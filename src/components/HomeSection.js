@@ -1,42 +1,76 @@
-import React from 'react'
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+import TestCasesSection from "./TestCasesSection";
+import TestCaseSingleValueSection from "./TestCaseSingleValueSection";
 
 function HomeSection() {
+  const [userThemeMode] = useContext(ThemeContext);
+  const [regExValue, setRegExValue] = useState("");
+  const [testCaseCategory, setTestCaseCategory] = useState("single");
+  const [testCaseSingleValue, setTestCaseSingleValue] = useState("");
+  const [testCaseList, setTestCaseList] = useState([]);
+
+  const changeRegExValue = (event) => {
+    setRegExValue(event.target.value);
+  };
+
   return (
     <>
-    <div
-    className="flex flex-col items-center justify-center w-full h-screen my-3 text-white bg-gradient-to-bl from-red-500 to-purple-500">
-    <h1 className="text-[3rem]"> <b>Regel - Regular Expression helper tool</b> </h1>
-    <p>Stay tuned for something amazing!!!</p>
+      <div
+        id="regex-container"
+        className="flex flex-col p-2 md:flex-row md:p-3"
+      >
+        <textarea
+          onChange={changeRegExValue}
+          spellcheck="false"
+          //TODO
+          className={`  ${
+            userThemeMode === "light"
+              ? "bg-[#141414] text-[#fcfcfc]"
+              : "bg-[#fcfcfc] text-[#141414]"
+          }
+           h-[10vh] w-[100%] resize-none border-[0.1rem] 
+          md:h-[15vh] md:w-[100%] `}
+        ></textarea>
+      </div>
 
-    <div className="grid grid-cols-1 gap-10 mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:mt-20">
-
-        <div className="text-center bg-transparent border">
-            <p className="px-10 py-5 text-5xl">15</p>
-            <hr/>
-            <p className="px-10 py-5">days</p>
+      <div id="testcases-container" className="p-2 md:p-3">
+        <div className="">
+          <span
+            onClick={(e) => setTestCaseCategory("single")}
+            className="bold border-[0.2rem] p-[0.1rem] text-[0.9rem] font-[500]"
+          >
+            Text Value{" "}
+          </span>
+          <span
+            onClick={(e) => setTestCaseCategory("list")}
+            className="bold border-[0.2rem] p-[0.1rem] text-[0.9rem] font-[500] "
+          >
+            Test Cases{" "}
+          </span>
         </div>
 
-        <div className="text-center bg-transparent border">
-            <p className="px-10 py-5 text-5xl">00</p>
-            <hr/>
-            <p className="px-10 py-5">hours</p>
-        </div>
-
-        <div className="text-center bg-transparent border">
-            <p className="px-10 py-5 text-5xl">00</p>
-            <hr/>
-            <p className="px-10 py-5">mins</p>
-        </div>
-        <div className="text-center bg-transparent border">
-            <p className="px-10 py-5 text-5xl">00</p>
-            <hr/>
-            <p className="px-10 py-5">secs</p>
-        </div>
-    </div>
-    
-</div>
+        
+          {
+            (testCaseCategory === "list" ? (
+              <TestCasesSection
+                userThemeMode={userThemeMode}
+                regExValue={regExValue}
+                testCaseList={testCaseList}
+                setTestCaseList={setTestCaseList}
+              />
+            ) : (
+              <TestCaseSingleValueSection
+                userThemeMode={userThemeMode}
+                regExValue={regExValue}
+                testCaseSingleValue={testCaseSingleValue} 
+                setTestCaseSingleValue={setTestCaseSingleValue}
+              />
+            ))
+          }
+      </div>
     </>
-  )
+  );
 }
 
-export default HomeSection
+export default HomeSection;

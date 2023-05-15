@@ -8,12 +8,12 @@
 
 :root {
   /* backgroundColor: */
-  --custom-background-color: #fdfdfd;
+  --custom-background-color: #fcfcfc;
 
   /* fontColor: */
-  --custom-font-color: #090909;
+  --custom-font-color: #141414;
 
-  --test-color: #fdfdfd;
+  --test-color: #fcfcfc;
 }
 
 body {
