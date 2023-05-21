@@ -6,6 +6,8 @@ module.exports = {
   theme: {
     extend: {fontFamily: {
       monospace: ['Roboto Mono', 'monospace'],
+      Uno: ['Prime', 'display'],
+      Dos: ['TriakisFont', 'display'],
       Poppins: ["Poppins", "sans-serif"],
       Inter: ["Inter", "sans-serif"]
     },

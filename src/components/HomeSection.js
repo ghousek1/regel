@@ -23,28 +23,29 @@ function HomeSection() {
         <textarea
           onChange={changeRegExValue}
           spellcheck="false"
-          //TODO
+          //TODO fix the issue later
           className={`  ${
             userThemeMode === "light"
               ? "bg-[#141414] text-[#fcfcfc]"
               : "bg-[#fcfcfc] text-[#141414]"
           }
-           h-[10vh] w-[100%] resize-none border-[0.1rem] 
-          md:h-[15vh] md:w-[100%] `}
+           h-[6vh] w-[100%] resize-none border-[0.1rem] 
+          md:h-[8vh] md:w-[100%] `}
         ></textarea>
       </div>
 
       <div id="testcases-container" className="p-2 md:p-3">
+        
         <div className="">
           <span
             onClick={(e) => setTestCaseCategory("single")}
-            className="bold border-[0.2rem] p-[0.1rem] text-[0.9rem] font-[500]"
+            className="bold border-[0.2rem] p-[0.3rem] text-[0.9rem] font-[500]"
           >
             Text Value{" "}
           </span>
           <span
             onClick={(e) => setTestCaseCategory("list")}
-            className="bold border-[0.2rem] p-[0.1rem] text-[0.9rem] font-[500] "
+            className="bold border-[0.2rem] p-[0.3rem] text-[0.9rem] font-[500] "
           >
             Test Cases{" "}
           </span>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [sideMenu, setSideMenu] = useState(false);
@@ -15,10 +16,10 @@ function Navbar() {
   };
 
   const navlinks = [
-    { name: "Guide", url: "guide" },
-    { name: "Useful Patterns", url: "useful-patterns" },
-    { name: "Tutorial", url: "tutorial" },
-    { name: "Github", url: "github" },
+    { id:0, name: "Cheat Sheet", url: "/cheatsheet" },
+    { id:1, name: "References", url: "/references" },
+    { id:2, name: "Guide", url: "/guide" },
+    { id:3, name: "Github", url: "/github" },
   ];
 
   return (
@@ -27,7 +28,8 @@ function Navbar() {
       className="flex h-[4.25rem] w-full items-center justify-between px-1 md:px-3 border-b-[0.1rem] "
     >
       <a href="/" className="z-[100] cursor-pointer text-3xl">
-        <span className="accent bold text-[1rem] font-[500] md:text-[1.2rem] md:font-[600]">REGEL</span>
+        <span className="accent bold text-[1rem] font-Uno font-[700] md:text-[1.2rem] md:font-[900]
+         leading-50 md:leading-50">REGEL</span>
       </a>
       <div
         className={`${sideMenu ? "flex" : "hidden md:flex"} 
@@ -36,17 +38,17 @@ function Navbar() {
         md:h-auto md:w-auto md:flex-row md:items-center md:justify-center md:bg-transparent md:p-0`}
       >
         <ul
-          className="slate mr-4 flex flex-col font-monospace tracking-wide
-                       md:flex-row text-[1rem] font-[500] leading-10 md:text-[0.8rem] md:font-[500] md:leading-8"
+          className="slate mr-4 flex flex-col font-Uno tracking-wide
+                       md:flex-row text-[1rem] font-[700] leading-10 md:text-[0.8rem] md:font-[900] md:leading-8"
         >
           {navlinks.map((navLink) => (
             <li key={navLink.id} className="px-5 py-3 md:px-4 md:py-0">
-              <a
+              <Link
                 className="hover-accent"
-                href={navLink.url}
+                to={navLink.url}
               >
                 <span className="uppercase bold">{navLink.name}</span>
-              </a>
+              </Link>
             </li>
           ))}
           <li>
