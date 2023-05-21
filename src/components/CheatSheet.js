@@ -5,7 +5,7 @@ function CheatSheet() {
     <>
       <div>
         <div>
-          <span>.</span> - Any Character Except New Line
+          <span>.</span> - Any Character Except New Line 
         </div>
         <div>
           <span>\d</span> - Digit (0-9)
