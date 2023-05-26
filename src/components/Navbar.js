@@ -28,8 +28,8 @@ function Navbar() {
       className="flex h-[4.25rem] w-full items-center justify-between px-1 md:px-3 border-b-[0.1rem] "
     >
       <a href="/" className="z-[100] cursor-pointer text-3xl">
-        <span className="accent bold text-[1rem] font-Uno font-[700] md:text-[1.2rem] md:font-[900]
-         leading-50 md:leading-50">REGEL</span>
+        <span className="accent bold text-[1rem] font-uno font-[700] md:text-[1.2rem] md:font-[900]
+         tracking-[0.2rem] md:tracking-[0.25rem]">REGEL</span>
       </a>
       <div
         className={`${sideMenu ? "flex" : "hidden md:flex"} 
@@ -38,7 +38,7 @@ function Navbar() {
         md:h-auto md:w-auto md:flex-row md:items-center md:justify-center md:bg-transparent md:p-0`}
       >
         <ul
-          className="slate mr-4 flex flex-col font-Uno tracking-wide
+          className="slate mr-4 flex flex-col font-uno tracking-wide
                        md:flex-row text-[1rem] font-[700] leading-10 md:text-[0.8rem] md:font-[900] md:leading-8"
         >
           {navlinks.map((navLink) => (

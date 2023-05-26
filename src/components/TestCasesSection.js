@@ -39,7 +39,7 @@ function TestCasesSection({
    
       <div
         className="flex min-h-[90vh] min-w-[100%] flex-col border-[0.1rem] md:min-h-[85vh] 
-         md:min-w-[100%]"
+         md:min-w-[100%] font-monospace"
       >
         <div id="test-cases-list">
           {testCaseList.map((val, key) => {

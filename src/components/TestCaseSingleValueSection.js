@@ -19,7 +19,7 @@ function TestCaseSingleValueSection({
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col font-monospace">
         <textarea
           className={` 
         ${
