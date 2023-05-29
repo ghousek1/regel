@@ -17,9 +17,8 @@ function Navbar() {
 
   const navlinks = [
     { id:0, name: "Cheat Sheet", url: "/cheatsheet" },
-    { id:1, name: "References", url: "/references" },
-    { id:2, name: "Guide", url: "/guide" },
-    { id:3, name: "Github", url: "/github" },
+    { id:1, name: "Guide", url: "/guide" },
+    { id:2, name: "Github", url: "https://github.com/ghousek1/regel" },
   ];
 
   return (

@@ -12,36 +12,37 @@ function ThemeContextDefaultProvider(props) {
         const colorScheme = event.matches ? "dark" : "light";
         setUserThemeMode(colorScheme);
       });
-
-    toggleUserThemeMode();
-    toggleCSSVariables();
   }, []);
+
+  useEffect(() => {
+    toggleCSSVariables();
+  }, [userThemeMode]);
+
 
   const lightThemeCSSVariables = [
     {
       name: "--custom-background-color",
-      value: "#fcfcfc",
+      value: "#fdfdfd",
     },
     {
       name: "--custom-font-color",
-      value: "#141414",
+      value: "#090909",
     },
   ];
 
   const darkThemeCSSVariables = [
     {
       name: "--custom-background-color",
-      value: "#141414",
+      value: "#090909",
     },
     {
       name: "--custom-font-color",
-      value: "#fcfcfc",
+      value: "#fdfdfd",
     },
   ];
 
   const toggleUserThemeMode = () => {
     setUserThemeMode(userThemeMode === "dark" ? "light" : "dark");
-    toggleCSSVariables();
   };
 
   const toggleCSSVariables = () => {

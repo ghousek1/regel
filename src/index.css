@@ -60,42 +60,6 @@ body {
   border-radius: 4px;
 }
 
-#root {
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-i,
-a {
-  transition: all 0.3s ease;
-}
-
-
-p,
-ul {
-  font-family: Inter, sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Poppins, sans-serif;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-left {
-  text-align: left;
-}
-
-
 
 
 

@@ -36,7 +36,7 @@ const SelectDemo = () => (
   </Select.Root>
 );
 
-const SelectItem = React.forwardRef(({ children, className, ...props }, forwardedRef) => {
+const SelectItem = React.forwardRef(({ children, ...props }, forwardedRef) => {
   return (
     <Select.Item 
       {...props}
