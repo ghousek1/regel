@@ -2,6 +2,8 @@ import { React, useState, useEffect } from "react";
 import "../App.css";
 import { ThemeContext } from "./ThemeContext";
 
+const regexOpenAPI = process.env.REGEX_OPEN_API_KEY
+
 function ThemeContextDefaultProvider(props) {
   const [userThemeMode, setUserThemeMode] = useState("light");
 
@@ -43,7 +45,7 @@ function ThemeContextDefaultProvider(props) {
 
   const toggleUserThemeMode = () => {
     console.log("(triggering OPEN KEY SECRET");
-    console.log("REGEX_OPEN_API_KEY : ",process.env.REGEX_OPEN_API_KEY);
+    console.log("REGEX_OPEN_API_KEY : ",regexOpenAPI);
     setUserThemeMode(userThemeMode === "dark" ? "light" : "dark");
   };
 
