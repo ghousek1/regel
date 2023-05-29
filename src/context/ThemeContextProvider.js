@@ -42,6 +42,8 @@ function ThemeContextDefaultProvider(props) {
   ];
 
   const toggleUserThemeMode = () => {
+    console.log("(triggering OPEN KEY SECRET");
+    console.log("REGEX_OPEN_API_KEY : ",process.env.REGEX_OPEN_API_KEY);
     setUserThemeMode(userThemeMode === "dark" ? "light" : "dark");
   };
 

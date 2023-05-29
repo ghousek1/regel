@@ -8,8 +8,6 @@ function Navbar() {
   const [userThemeMode, toggleUserThemeMode] = useContext(ThemeContext);
 
   const toggleSideMenu = () => {
-    console.log("(triggering OPEN KEY SECRET");
-    console.log("REGEX_OPEN_API_KEY : ",process.env.REGEX_OPEN_API_KEY);
     setSideMenu(!sideMenu);
   };
 
