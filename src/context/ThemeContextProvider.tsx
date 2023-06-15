@@ -1,11 +1,12 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import { ThemeContext } from "./ThemeContext";
+import { ThemeMode } from "../util/ThemeUtil";
 
-const regexOpenAPIKey = process.env.REGEX_OPEN_API_KEY
+const regexOpenAPIKey = process.env.REGEX_OPEN_API_KEY;
 
-function ThemeContextDefaultProvider(props) {
-  const [userThemeMode, setUserThemeMode] = useState("light");
+function ThemeContextDefaultProvider(props: any) {
+  const [userThemeMode, setUserThemeMode] = useState<ThemeMode>("light");
 
   useEffect(() => {
     window
@@ -19,7 +20,6 @@ function ThemeContextDefaultProvider(props) {
   useEffect(() => {
     toggleCSSVariables();
   }, [userThemeMode]);
-
 
   const lightThemeCSSVariables = [
     {
@@ -45,7 +45,7 @@ function ThemeContextDefaultProvider(props) {
 
   const toggleUserThemeMode = () => {
     console.log("(triggering OPEN KEY SECRET");
-    console.log("REGEX_OPEN_API_KEY : ",regexOpenAPIKey);
+    console.log("REGEX_OPEN_API_KEY : ", regexOpenAPIKey);
     setUserThemeMode(userThemeMode === "dark" ? "light" : "dark");
   };
 
@@ -54,17 +54,19 @@ function ThemeContextDefaultProvider(props) {
       userThemeMode === "light"
         ? lightThemeCSSVariables
         : darkThemeCSSVariables;
-    themeCSSVariables.map((cssVar) => {
+
+    themeCSSVariables.forEach((cssVar) => {
       document.documentElement.style.setProperty(cssVar.name, cssVar.value);
     });
   };
 
   return (
-    <>
-      <ThemeContext.Provider value={[userThemeMode, toggleUserThemeMode]}>
-        {props.children}
-      </ThemeContext.Provider>
-    </>
+    <ThemeContext.Provider value={{
+      themeMode:userThemeMode,
+      toggleThemeMode: toggleUserThemeMode,
+      }}>
+      {props.children}
+    </ThemeContext.Provider>
   );
 }
 

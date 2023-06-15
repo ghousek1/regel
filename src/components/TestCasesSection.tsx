@@ -1,14 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
-function TestCasesSection({
-  userThemeMode,
-  regExValue,
-  regExFlags,
-  testCaseList,
-  setTestCaseList,
-}) {
-  const [newTestCase, setNewTestCase] = useState("");
-  const getRegex = () => {
+
+interface ITestCasesSectionProps{
+  userThemeMode: string;
+  regExValue: string;
+  regExFlags: string[];
+  testCaseList: string[];
+  setTestCaseList(values: string[]): any;
+}
+
+function TestCasesSection({userThemeMode,regExValue,regExFlags, 
+                         testCaseList,setTestCaseList}:ITestCasesSectionProps) {
+
+  const [newTestCase, setNewTestCase] = useState<string>("");
+
+  const getRegex = ():RegExp|null => {
     if(!regExValue){
       return null;
     }
@@ -21,15 +27,15 @@ function TestCasesSection({
     }
   };
 
-  const regex = getRegex();
+  const regex: RegExp|null  = getRegex();
 
-  const updateTestCaseList = () => {
+  const updateTestCaseList = ():void => {
     if (newTestCase) {
       setTestCaseList([...testCaseList, newTestCase]);
     }
   };
 
-  const validateTestCase = (val) => {
+  const validateTestCase = (val: string): string => {
     console.log("regex: ",regex);
     if (!regex) {
       return "wrong-regex";
@@ -42,7 +48,7 @@ function TestCasesSection({
     return "in-valid";
   };
 
-  const getTestCaseStyle = (val) => {
+  const getTestCaseStyle = (val: string): string => {
     let testCaseRes = validateTestCase(val);
 
     if (testCaseRes==="valid") {
@@ -64,7 +70,7 @@ function TestCasesSection({
          "
       >
         <div id="test-cases-list">
-          {testCaseList.map((val, key) => {
+          {testCaseList.map((val: string, key: number) => {
             return (
               <div
                 key={key}
@@ -90,7 +96,7 @@ function TestCasesSection({
                 ? "bg-[#141414] text-[#fcfcfc]"
                 : "bg-[#fcfcfc] text-[#141414]"
             } border-[0.1rem]`}
-            onChange={(e) => setNewTestCase(e.target.value)}
+            onChange={(e:ChangeEvent<HTMLInputElement>) => setNewTestCase(e.target.value)}
           ></input>
           <button onClick={updateTestCaseList}>
             <span className="text-[1.7rem] font-[500] pl-[0.5rem] ">+</span>

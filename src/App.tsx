@@ -6,20 +6,21 @@ import NavBar from "./components/Navbar";
 import CheatSheet from "./components/CheatSheet";
 
 import ThemeContextDefaultProvider from "./context/ThemeContextProvider";
+import { ReactElement } from "react";
 
-function App() {
+const App = (): ReactElement => {
   return (
     <div className="App">
       <ThemeContextDefaultProvider>
-        <NavBar/>
+        <NavBar />
         <Routes>
-          <Route path="/" element={<HomeSection/>}/>
-          <Route path="/cheatsheet" element={<CheatSheet/>}/>
-          <Route path="/guide" element={<Guide/>}/>
+          <Route path="/" element={<HomeSection />} />
+          <Route path="/cheatsheet" element={<CheatSheet />} />
+          <Route path="/guide" element={<Guide />} />
         </Routes>
       </ThemeContextDefaultProvider>
     </div>
   );
-}
+};
 
 export default App;

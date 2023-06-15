@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-function Guide() {
+function Guide(): ReactElement {
   
 
   return (

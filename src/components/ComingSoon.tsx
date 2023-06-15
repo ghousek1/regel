@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-function ComingSoon() {
+function ComingSoon(): ReactElement {
   return (
     <>
     <div

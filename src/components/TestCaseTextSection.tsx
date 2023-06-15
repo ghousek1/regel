@@ -1,14 +1,22 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+
+interface ITestCaseTextSectionProps {
+  userThemeMode: string;
+  regExValue: string;
+  regExFlags: string[];
+  testCaseText: string;
+  setTestCaseText(value: string): any;
+}
 
 function TestCaseTextSection({
   userThemeMode,
   regExValue,
   regExFlags,
   testCaseText,
-  setTestCaseText,
-}) {
+  setTestCaseText}: ITestCaseTextSectionProps) {
+  
   const Highlight = require("react-highlighter");
-  const getRegex = () => {
+  const getRegex = ():RegExp|null => {
     if (!regExValue) {
       return null;
     }
@@ -21,7 +29,7 @@ function TestCaseTextSection({
     }
   };
 
-  const regex = getRegex();
+  const regex:RegExp|null = getRegex();
 
   return (
     <>
@@ -36,17 +44,16 @@ function TestCaseTextSection({
         
         min-h-[45vh] min-w-[100%] resize-none border-[0.05rem]
         md:min-h-[43vh] md:min-w-[100%]`}
-          onChange={(e) => setTestCaseText(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setTestCaseText(e.target.value)}
         >
           {testCaseText}
         </textarea>
 
-        {regex ? 
-           (
+        {regex ? (
           <div className="min-h-[45vh] min-w-[100%] border-[0.05rem] md:min-h-[43vh] md:min-w-[100%]">
             <Highlight search={regex}>{testCaseText}</Highlight>
           </div>
-           ) : null}
+        ) : null}
       </div>
     </>
   );

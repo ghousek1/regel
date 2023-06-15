@@ -1,21 +1,28 @@
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import React, { ReactElement, useContext, useState } from "react";
+import { ThemeContext, IThemeContextType } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
 
-function Navbar() {
-  const [sideMenu, setSideMenu] = useState(false);
+interface Navlink{
+  id: number;
+  name: string;
+  url: string;
+}
 
-  const [userThemeMode, toggleUserThemeMode] = useContext(ThemeContext);
+const Navbar = (): ReactElement => {
+  const [sideMenu, setSideMenu] = useState<boolean>(false);
 
-  const toggleSideMenu = () => {
+  const userThemeModeContext = useContext<IThemeContextType>(ThemeContext);
+
+  const toggleSideMenu = (): void => {
     setSideMenu(!sideMenu);
   };
 
-  const toggleTheme = () => {
-    toggleUserThemeMode();
+  const toggleTheme = (): void => {
+    console.log("toggling theme: ",userThemeModeContext.themeMode);
+    userThemeModeContext.toggleThemeMode();
   };
 
-  const navlinks = [
+  const navlinks: Navlink[] = [
     { id:0, name: "Cheat Sheet", url: "/cheatsheet" },
     { id:1, name: "Guide", url: "/guide" },
     { id:2, name: "Github", url: "https://github.com/ghousek1/regel" },
@@ -40,7 +47,7 @@ function Navbar() {
           className="slate mr-4 flex flex-col font-uno tracking-wide
                        md:flex-row text-[1rem] font-[700] leading-10 md:text-[0.8rem] md:font-[900] md:leading-8"
         >
-          {navlinks.map((navLink) => (
+          {navlinks.map((navLink: Navlink) => (
             <li key={navLink.id} className="px-5 py-3 md:px-4 md:py-0">
               <Link
                 className="hover-accent"

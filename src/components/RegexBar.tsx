@@ -1,9 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import React, { useState, useContext, useEffect, ReactElement,ChangeEvent } from "react";
+import { IThemeContextType, ThemeContext } from "../context/ThemeContext";
 import MultiSelect from "./MultiSelect";
+import { Option } from "../util/GenericUtil";
 
-function RegexBar({ setRegExValue, setRegExFlags }) {
-  const options = [
+interface IRegexBarProps {
+  // setRegExValue(value: string): any;
+  //TODO
+  setRegExValue: (value: string) => any;
+  setRegExFlags(values: string[]): any;
+}
+
+const RegexBar = ({ setRegExValue, setRegExFlags }: IRegexBarProps) : ReactElement => {
+  const options: Option[] = [
     { id: 0, label: "Global", value: "g" },
     { id: 1, label: "Case Insensitive", value: "i" },
     { id: 2, label: "Multiline mode", value: "m" },
@@ -11,18 +19,19 @@ function RegexBar({ setRegExValue, setRegExFlags }) {
     { id: 4, label: "Unicode support", value: "u" },
     { id: 5, label: "Sticky mode", value: "y" },
   ];
-  const [userThemeMode] = useContext(ThemeContext);
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const userThemeModeContext = useContext<IThemeContextType>(ThemeContext);
+
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
   useEffect(() => {
-    let regExFlags = selectedOptions.map((so) => {
+    let regExFlags: string[] = selectedOptions.map((so) => {
       return so.value;
     });
     setRegExFlags(regExFlags);
   }, [selectedOptions]);
 
-  const changeRegExValue = (event) => {
+  const changeRegExValue = (event:ChangeEvent<HTMLInputElement>) : void => {
     setRegExValue(event.target.value);
   };
   return (
@@ -34,7 +43,7 @@ function RegexBar({ setRegExValue, setRegExFlags }) {
         <input
           onChange={changeRegExValue}
           className={`  ${
-            userThemeMode === "dark"
+            userThemeModeContext.themeMode === "dark"
               ? "bg-[#141414] text-[#fcfcfc]"
               : "bg-[#fcfcfc] text-[#141414]"
           }
@@ -45,7 +54,7 @@ function RegexBar({ setRegExValue, setRegExFlags }) {
         <div className="px-1 font-bold">
           <pre>/ </pre>
         </div>
-        
+
         <div className="h-[100%] w-[10%]  ">
           <MultiSelect
             options={options}

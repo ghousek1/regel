@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
+import { Option } from "../util/GenericUtil";
 
-function MultiSelect({ options , selectedOptions, setSelectedOptions }) {
+interface IMultiSelectProps {
+  options: Option[];
+  selectedOptions: Option[];
+  setSelectedOptions(values: Option[]):any;
+}
+
+function MultiSelect({ options , selectedOptions, setSelectedOptions }: IMultiSelectProps): ReactElement {
   
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const isOptionSelected = (option) => {
+  const isOptionSelected = (option: Option): boolean => {
     return selectedOptions.some(so => so.label === option.label);
   };
 
-  const toggleSelectedOptions = (option) => {
+  const toggleSelectedOptions = (option: Option): void => {
     if (selectedOptions.some(so => so.label === option.label)) {
       let filteredTasks = selectedOptions.filter((o) => {
         return o.label !== option.label;
@@ -19,8 +26,8 @@ function MultiSelect({ options , selectedOptions, setSelectedOptions }) {
     }
   };
 
-  const closeMultiSelectMenu = () =>{
-    console.log("closeMultiSelectMenu..........................");
+  const closeMultiSelectMenu = (): void =>{
+    // console.log("closeMultiSelectMenu..........................");
     setIsOpen(false);
   }
 

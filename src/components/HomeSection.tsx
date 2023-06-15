@@ -1,17 +1,19 @@
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import React, { ReactElement, useContext, useState } from "react";
+import { ThemeContext, IThemeContextType } from "../context/ThemeContext";
 import TestCasesSection from "./TestCasesSection";
 import TestCaseTextSection from "./TestCaseTextSection";
 import RegexBar from "./RegexBar";
 import TestCaseOptions from "./TestCaseOptions";
 
-function HomeSection() {
-  const [userThemeMode] = useContext(ThemeContext);
-  const [regExValue, setRegExValue] = useState("");
-  const [regExFlags, setRegExFlags] = useState([]);
-  const [testCaseCategory, setTestCaseCategory] = useState("single");
-  const [testCaseText, setTestCaseText] = useState("");
-  const [testCaseList, setTestCaseList] = useState([]);
+function HomeSection(): ReactElement {
+  const userThemeModeContext = useContext<IThemeContextType>(ThemeContext);
+
+  const [regExValue, setRegExValue] = useState<string>("");
+  const [regExFlags, setRegExFlags] = useState<string[]>([]);
+  
+  const [testCaseCategory, setTestCaseCategory] = useState<string>("single");
+  const [testCaseText, setTestCaseText] = useState<string>("");
+  const [testCaseList, setTestCaseList] = useState<string[]>([]);
 
   return (
     <>
@@ -22,7 +24,7 @@ function HomeSection() {
     
         {testCaseCategory === "list" ? (
           <TestCasesSection
-            userThemeMode={userThemeMode}
+            userThemeMode={userThemeModeContext.themeMode}
             regExValue={regExValue}
             regExFlags={regExFlags}
             testCaseList={testCaseList}
@@ -30,7 +32,7 @@ function HomeSection() {
           />
         ) : (
           <TestCaseTextSection
-            userThemeMode={userThemeMode}
+            userThemeMode={userThemeModeContext.themeMode}
             regExValue={regExValue}
             regExFlags={regExFlags}
             testCaseText={testCaseText}

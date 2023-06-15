@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
-function CheatSheet() {
+function CheatSheet(): ReactElement {
   return (
     <>
       <div>
@@ -65,7 +65,7 @@ function CheatSheet() {
           <span>{3}</span> - Exact Number
         </div>
         <div>
-          <span>{(3, 4)}</span> - Range of Numbers (Minimum, Maximum)
+          <span>{"(3 , 4)"}</span> - Range of Numbers (Minimum, Maximum)
         </div>
       </div>
     </>
